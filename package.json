@@ -1,0 +1,20 @@
+{
+    "devDependencies": {
+        "@mdit/plugin-figure": "^0.13.1",
+        "markdown-it-mathjax3": "^4.3.2",
+        "vitepress": "^1.5.0",
+        "vitepress-demo-plugin": "^1.4.7",
+        "vue": "^3.5.13"
+    },
+    "type": "module",
+    "scripts": {
+        "docs:dev": "vitepress dev docs",
+        "docs:build": "vitepress build docs",
+        "docs:preview": "vitepress preview docs"
+    },
+    "dependencies": {
+        "@vitepress-code-preview/container": "^1.0.8",
+        "@vitepress-code-preview/plugin": "^1.0.6",
+        "vitepress-sidebar": "^1.33.0"
+    }
+}
