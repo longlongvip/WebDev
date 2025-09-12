@@ -43,3 +43,4 @@ absolute：元素会被移出正常文档流，并不为元素预留空间，通
 fixed：元素会被移出正常文档流，并不为元素预留空间，而是通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。打印时，元素会出现在的每页的固定位置。fixed属性会创建新的层叠上下文。当元素祖先的transform，perspective或filter属性非 none 时，容器由视口改为该祖先。
 
 sticky：元素根据正常文档流进行定位，然后相对它的最近滚动祖先（nearest scrolling ancestor）和containing block(最近块级祖先nearest block-level ancestor)，包括table-related元素，基于top、right、bottom和left的值进行偏移。偏移值不会影响任何其他元素的位置
+

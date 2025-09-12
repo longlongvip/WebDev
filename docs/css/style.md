@@ -1,9 +1,22 @@
 # 各种风格的 CSS
 
-- [Windows XP](https://github.com/botoxparty/XP.css)
-- [Windows 98](https://github.com/yocontra/windows_98.css)
+- [1980s DOS](https://github.com/kristopolous/BOOTSTRA.386)
 - [Windows 95](https://github.com/h01000110/windows-95)
+- [Windows 98](https://github.com/yocontra/windows_98.css)
+- [Windows 98 2](https://github.com/jdan/98.css)
+
+- [Windows XP](https://github.com/botoxparty/XP.css)
+- [Windows XP 2](https://github.com/firwer/winxpsite)
+- [Windows 7](https://github.com/khang-nd/7.css)
+- [Classic Mac](https://github.com/npjg/classic.css)
+- [Retro Apple](https://github.com/sakofchit/system.css)
 - [LaTeX](https://latex.vercel.app/)
+- [Github Markdown CSS](https://github.com/sindresorhus/github-markdown-css)
 - [Fallout-1](https://github.com/zAlweNy26/fallout.css/)
+- [NES](https://github.com/nostalgic-css/NES.css)
+- [PS1](https://github.com/micah5/PSone.css)
+- [The Sims](https://github.com/inbn/TheSims.css)
+- [RPG GUI](https://github.com/RonenNess/RPGUI)
+- [Terminal](https://github.com/Gioni06/terminal.css)
 - [](https://github.com/dbohdan/classless-css)
-- 
+- [retro-css](https://github.com/matt-auckland/retro-css)
