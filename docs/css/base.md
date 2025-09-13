@@ -137,21 +137,21 @@ h1, h2, p {
 - 后代选择器，用空格（ ）表示，匹配父元素后代子孙节点中的元素，例如div p匹配div中所有的段落，不一定是儿子结点，也可以是孙子结点
 - 子选择器，用>表示，匹配某个元素的孩子结点。例如div>p表示div中所有p孩子元素
 - 相邻兄弟选择器，用+表示，匹配同级节点的紧邻下一个元素。例如div+p匹配div后面与该div紧邻着的段落，p与div之间不能有其他元素
-- 通用兄弟选择器，用~表示，匹配同级节点的后面的元素，不要求是紧邻的元素。例如div~p匹配div后面所有同级的<P>元素
+- 通用兄弟选择器，用~表示，匹配同级节点的后面的元素，不要求是紧邻的元素。例如div~p匹配div后面所有同级的 `<P>` 元素
 
-- 复合选择器， 你可以组合多个选择器，增强代码的可读性和规则的功能。例如，你想将规则应用于类名为cls的<a>元素，将其颜色设置为红色，可以这样写：
+- 复合选择器， 你可以组合多个选择器，增强代码的可读性和规则的功能。例如，你想将规则应用于类名为cls的 `<a>` 元素，将其颜色设置为红色，可以这样写：
 
 ```css
 a.cls {
     color: red;
 }
 ```
+
 注意，与组合器不同的是，复合选择器在选择器之间不包含任何符号和空格
 
 ## 级联
 
 有时候，有多个相同的css规则可以被应用于同一个元素。此时浏览器需要使用级联算法确定最后使用哪一个css规则进行页面渲染
-
 
 css是级联样式表（Cascading Stylesheets）。级联是解决当多个css规则被同时应用于一个html元素时产生的冲突的一种算法。正因为级联，下面的按钮才会被渲染成蓝色：
 
@@ -196,7 +196,6 @@ transition规则。
 
 所以当某些动画规则或者变换规则激活时，它会取代普通规则，进行渲染页面
 
-
 ## CSS 继承
 
 某些css属性，如果你不显式设置它的值，那么它的值会从父节点继承。本节内容将会讲述继承是如何工作的，怎么去利用这一特性
@@ -219,39 +218,6 @@ html页面中每个css属性都有一个预定义的默认值。如果级联算�
 - unset关键字的表现有点特殊，当css属性是可以继承的，那么unset关键字和inherit关键字作用相同；当css属性是不可以继承的，那么unset关键字的作用和initial作用相同
 
 你并不需要立刻记住哪些属性是可以继承的，哪些是不可以被继承的，太多了，不可能全部记住的。你只需要知道有继承属性的存在，剩下的就交给时间，慢慢熟悉即可
-
-
-
-## CSS 颜色
-
-- 颜色名称
-
-<script setup>
-
-import { ref } from 'vue'
-
-const color_name = ref("black")
-const color_hex = ref("000000")
-
-</script>
-
-<div :style="{ width: '100%', height: '80px', backgroundColor: color_name, display: 'flex', justifyContent: 'center', alignItems: 'center' }">
-    <input v-model="color_name" type="text" style="color: black; border: 1px solid black; background-color: white;" >
-</div>
-
-- 十六进制
-
-<div :style="{ width: '100%', height: '80px', backgroundColor: '#' + color_hex, display: 'flex', justifyContent: 'center', alignItems: 'center' }">
-    <input v-model="color_hex" type="text" style="color: black; border: 1px solid black;  background-color: white;" >
-
-</div>
-
-- 十进制
-- 百分比
-- RGB
-- RGBA
-- HSL
-- HSLA
 
 ## CSS 尺寸单位
 
@@ -360,7 +326,6 @@ css提供了一些相对于元素字体大小的相对单位
 | vmin |     视口高度 vw 和宽度 vh 两者之间的最小值     |
 | vmax |     视口高度 vw 和宽度 vh 两者之间的最大值     |
 
-
 角度单位：
 
 ```css
@@ -395,3 +360,244 @@ body {
 }
 ```
 
+## CSS 伪元素
+
+伪元素的作用是在不添加任何html代码的情况下可以拥有添加额外的元素的功能，或者是指定某个目标元素
+
+如果你的上司安排给你一个任务，将一篇文章的每个段落的首字母变大，你将如何实现这个功能呢？
+
+幸运的是，css恰好提供了这个功能。你可以使用::first-letter实现这个需求
+
+```css
+p::first-letter {
+    color: blue;
+    float: left;
+    font-size: 2.6em;
+    font-weight: bold;
+    line-height: 1;
+    margin-inline-end: 0.2rem;
+}
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="013 Pseudo-elements_01" src="https://codepen.io/AhCola/embed/PomrPEm?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"> See the Pen 013 Pseudo-elements_01 by Pengfei Wang (@AhCola) on CodePen. </iframe>
+上面的codepen代码，使用了::first-letter伪元素，轻松的实现了上司的需求。CSS拥有很多伪元素，它们都是以::开头的格式，接下来一起看下这些伪元素
+
+- ::before 和 ::after
+
+::before和::after这两个伪元素的功能是配合content属性在目标元素内部创建一个子元素，::before在目标元素头部创建一个元素，::after在目标元素尾部创建一个元素
+
+```css
+.ele::before {
+    content: "";
+}
+.ele::after {
+    content: "";
+}
+```
+
+一旦你使用::before和::after创建了伪元素，你可以给这个元素添加样式。但是记住你只能在可以拥有子元素的元素目标上使用::before和::after创建伪元素，例如::before和::after对 `<img />`和 `<video>` 等无效
+
+- ::fist-letter
+
+在文章最前面，我们使用::first-letter伪元素完成了上司给我们安排的任务。与::before和::after不同的是，::first-letter并不会创建一个元素，它指示了目标元素内部的首字母，通过::first-letter，我们可以为目标元素的首字母单独设置样式，就像我们使用::first-letter更改段落的首字母的font-size。
+
+但是并不是所有css属性都可以设置，仅可以更改::first-letter指示目标的以下属性:
+
+- color
+- 背景属性
+- 边框属性
+- float
+- 字体属性
+- 文本属性
+
+```css
+p::first-letter {
+    color: goldenrod;
+    font-weight: bold;
+}
+```
+
+- ::first-line
+
+顾名思义，::first-line指示目标的首行。例如p::first-line的指示目标是段落的首行
+
+```css
+p::first-line {
+    color: red;
+    font-weight: bold;
+}
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="013 Pseudo-elements_02" src="https://codepen.io/AhCola/embed/vYmqGGQ?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"> See the Pen 013 Pseudo-elements_02 by Pengfei Wang (@AhCola) on CodePen. </iframe>
+和::first-letter类似，我们只可以更改部分css属性：
+
+- color
+- 背景属性
+- 字体属性
+- 文本属性
+
+- ::backdrop
+
+backdrop表示背景幕布的意思。::backdrop指示的就是可全屏元素的背景元素，通过::backdrop可以设置全屏元素背景的样式。可全屏元素有 `<dialog>` 和 `<video>`。
+
+看一个例子，感受下::backdrop的作用。
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="013 Pseudo-elements_03" src="https://codepen.io/AhCola/embed/QWvXNBG?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"> See the Pen 013 Pseudo-elements_03 by Pengfei Wang (@AhCola) on CodePen. </iframe>
+通过::backdrop，将dialog弹出时的背景颜色更改为rgba(100, 10, 10, 0.7);
+
+- ::marker
+
+::marker可以用来修改某些元素的标记符号样式，例如 `<ul>` 和 `<ol>` 列表项前面的点和数字，也可以更改 `<summary>` 前面的内容。
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="013 Pseudo-elements_04" src="https://codepen.io/AhCola/embed/zYwVqQL?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"> See the Pen 013 Pseudo-elements_04 by Pengfei Wang (@AhCola) on CodePen. </iframe>
+可支持::marker修改的css属性有:
+
+- 颜色
+- 内容
+- white-space
+- 字体属性
+- animation 和 transition 属性
+
+- ::selection
+
+::selection允许你修改选中的文本样式
+
+```css
+::selection {
+    background: green;
+    color: white;
+}
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="013 Pseudo-elements_05" src="https://codepen.io/AhCola/embed/eYWwZqr?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"> See the Pen 013 Pseudo-elements_05 by Pengfei Wang (@AhCola) on CodePen. </iframe>
+::selection支持修改的css属性有：
+
+- color
+- backgroun-color
+- text
+
+- ::placeholder
+
+在使用 `<input>` 元素时，通常会添加一个placeholder属性提示用户输入。::placeholder伪元素用于更改提示文字（placeholder）的样式。
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="" src="https://codepen.io/AhCola/embed/rNmELar?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"> See the Pen by Pengfei Wang (@AhCola) on CodePen. </iframe>
+支持修改的css属性如下：
+
+- color
+- background
+- font
+- text
+
+## CSS 伪类
+
+伪类(pseudo classes)允许你根据元素的状态动态的设置样式。这意味着，你的设计可以根据用户的操作发生动态的变化
+
+本节内容比较多，你不需要完全记住所有的伪类，只需要知道伪类的作用和一些常用伪类即可，用到的时候，可以来这里再回忆一下
+
+假设需要在页面上添加一个邮箱输入框，当用户输入无效格式的邮箱字符串时，输入框会出现一个红色的边框，你要如何实现这个功能呢？CSS提供了:invalid伪类，恰好满足我们的需求
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="018 Pseudo classes_01" src="https://codepen.io/AhCola/embed/gOROjoN?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"> See the Pen 018 Pseudo classes_01 by Pengfei Wang (@AhCola) on CodePen. </iframe>
+当邮箱账号格式正确时，显示绿色的边框，格式不正确时，显示红色的边框。这种设计可以起到提示的作用。
+
+例子中的:invalid和:valid就是伪类。与伪元素写法有点类似，但是 **伪类用单冒号** 表示
+
+- 交互状态
+
+:hover，当鼠标悬浮在某个元素上面时，元素的hover状态被激活，你可以用:hover更改此时元素的样式
+:active，当元素正在处于与用户交互的操作时，此时该元素处于激活状态，例如用户点击了该元素，该元素在点击的过程中处于激活状态。可以用:active更改这个状态下的元素样式
+:focus，:focus-within，:focus-visible，通过:focus可以更改focusable元素（例如button）获得焦点时的样式，如果一个元素的子元素获得焦点，可以通过:focus-within更改该元素此时的样式，关于:focus-visible这里有详细解释。它的作用是可以让我们知道元素的聚焦行为到底是鼠标触发还是键盘触发。 例如下面的例子，我们希望去除鼠标点击时候的outline轮廓，而保留键盘访问时候的outline轮廓
+:target，当url中锚片段匹配某个元素的id时，可以用:target更改此时元素的样式。通常用这个标志页面跳转的区域
+
+- 历史状态
+
+如果一个拥有href属性的 `<a>` 元素还没有访问过（被用户点击），可以使用:link更改它的样式。也可以使用:visited更改已访问过得 `<a>` 元素的样式。在某些浏览器中，如果你定义了一个:visited样式，它可能会被后面定义的:link样式覆盖，所以建议按照如下顺序定义伪类样式
+
+```css
+a:link {}
+a:visited {}
+a:hover {}
+a:active {}
+```
+
+- 表单状态
+
+:disabled和:enabled，用于设置表单元素（例如button）是否禁用时的样式，表单元素默认是enabled，所以我们一般很少用:enabled设置元素的样式
+:checked用于指示某些可以被用户点击选中的表单元素，例如checkbox和radioButton
+checkbox元素除了拥有选中和被选中两种状态，还有一种状态为indeterminate，需要通过js激活该状态：
+
+```javascript
+inputCheckbox.indeterminate = true;
+```
+
+可以使用:indeterminate设置该状态下的样式
+
+如果某个表单元素设置了placeholder属性，那么当placeholder显示的时候，可以用:placeholder-shown设置该状态下的样式
+
+正如文章开始的例子那样，可以使用:valid、:invalid和in-range根据表单元素的验证状态，动态的更改样式。
+
+:in-range主要是针对，设置了min和max属性的 `<input>` 元素。例如<input type=number min=1 max=5 />，使用下面的css代码，当用户输入数字范围不在1~5范围间时，输入框背景色为红色
+
+```css
+input {
+    background: red;
+}
+input:in-range {
+    background: white;
+}
+```
+
+- 根据元素的索引、出现顺序选中元素
+
+:first-child和:last-child用于选中一组元素内同级的第一个和最后一个元素
+:only-child用于选中没有兄弟元素的元素
+:first-of-type和:last-of-type与:first-child和:last-child类似，也是选中第一个和最后一个元素，但是范围不一样，它不限于元素在一个组内，不要求元素是兄弟节点
+nth-child和nth-of-type是前面内容的扩充，用于选中第n个元素。你还可以使用nth-child(even)选中所有奇数位元素。甚至更复杂的形式，选中3n+3位置的元素
+
+```css
+li:nth-child(3n+3) {
+    background: yellow;
+}
+```
+
+only-of-type与only-child元素类似，区别是only-child选中的是一组内唯一子元素，而only-of-type选中的是一组内唯一类型的子元素
+
+- 寻找空元素
+
+:empty
+当某个元素没有子元素时，我们认为它是一个空元素。可以使用:empty设置空元素的样式。
+
+注意空元素，标签内部没有空格
+
+```css
+<div></div>
+<div>
+</div>
+```
+
+第二个 `<div>` 元素不是一个空元素，所以:empty对其无效果
+
+- 选择和过滤
+
+:is()，如果你想要指示类名为.post元素下h2、li子元素，可以这样写:
+
+```css
+.post :is(h2, li) {
+
+}
+```
+
+:not()可以使用:not()排除某些元素。例如选中所有没有类名（class属性）的链接
+
+```css
+a:not([class]) {
+
+}
+```
+
+选中所有没有alt属性的图片
+
+```css
+img:not([alt]) {
+    
+}
+```

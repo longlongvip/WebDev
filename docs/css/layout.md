@@ -16,7 +16,7 @@ display属性做了两件事。第一件事是他决定一个盒子是否表现�
 }
 ```
 
-inline元素被称为行内元素，行内元素就像一段语句中的一个单词。它们在行内方向上紧挨着彼此。像<span>和<strong>元素就是典型的行内元素，它们在<p>（段落，<p>是一个block元素，后面将会介绍block元素）中都是紧挨着彼此的。它们同样拥有周围的空间，即padding、border和margin属性都是有效的
+inline元素被称为行内元素，行内元素就像一段语句中的一个单词。它们在行内方向上紧挨着彼此。像 `<span>` 和 `<strong>` 元素就是典型的行内元素，它们在 `<p>`（段落，`<p>` 是一个block元素，后面将会介绍block元素）中都是紧挨着彼此的。它们同样拥有周围的空间，即padding、border和margin属性都是有效的
 
 你无法设置行内元素的width和height属性。block层级的margin和padding将会被周围的元素忽略（这句话的英文原文是Any block level margin and padding will be ignored by the surrounding elements，我不清楚这样翻译是否合适）
 
@@ -24,7 +24,7 @@ block元素，即块元素，它们并不是紧挨着其他元素的。它们在
 
 ```css
 .my-element {
-	display: block;
+    display: block;
 }
 ```
 
@@ -43,4 +43,3 @@ absolute：元素会被移出正常文档流，并不为元素预留空间，通
 fixed：元素会被移出正常文档流，并不为元素预留空间，而是通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。打印时，元素会出现在的每页的固定位置。fixed属性会创建新的层叠上下文。当元素祖先的transform，perspective或filter属性非 none 时，容器由视口改为该祖先。
 
 sticky：元素根据正常文档流进行定位，然后相对它的最近滚动祖先（nearest scrolling ancestor）和containing block(最近块级祖先nearest block-level ancestor)，包括table-related元素，基于top、right、bottom和left的值进行偏移。偏移值不会影响任何其他元素的位置
-
